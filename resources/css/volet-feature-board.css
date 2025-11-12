@@ -1,78 +1,121 @@
 @import "tailwindcss";
 
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
+
+    --font-sans: var(--font-sans);
+    --font-mono: var(--font-mono);
+    --font-serif: var(--font-serif);
+
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) + 4px);
+
+    --shadow-2xs: var(--shadow-2xs);
+    --shadow-xs: var(--shadow-xs);
+    --shadow-sm: var(--shadow-sm);
+    --shadow: var(--shadow);
+    --shadow-md: var(--shadow-md);
+    --shadow-lg: var(--shadow-lg);
+    --shadow-xl: var(--shadow-xl);
+    --shadow-2xl: var(--shadow-2xl);
+}
+
 .vfb-button {
     display: flex;
     align-items: center;
     cursor: pointer;
-    border-radius: 0.375rem;
-    background-color: #2563eb;
-    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+    background-color: var(--color-primary);
+    padding: var(--spacing) calc(var(--spacing) * 2);
     font-size: 0.875rem;
     font-weight: 600;
-    color: #fff;
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    color: var(--color-primary-foreground);
     border: none;
     outline: none;
     transition: background 0.2s;
-}
-.vfb-button:hover {
-    background-color: #3b82f6;
-}
-.vfb-button:focus-visible {
-    outline: 2px solid #2563eb;
-    outline-offset: 2px;
 }
 
 .vfb-button-outline {
     display: flex;
     align-items: center;
     cursor: pointer;
-    border-radius: 0.375rem;
-    background-color: #fff;
-    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+    background-color: var(--color-background);
+    padding: var(--spacing) calc(var(--spacing) * 2);
     font-size: 0.875rem;
     font-weight: 600;
-    color: #111827;
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    border: 1px solid #d1d5db;
+    color: var(--color-muted-foreground);
+    border: 1px solid var(--color-border);
     outline: none;
     transition: background 0.2s;
 }
 .vfb-button-outline:hover {
-    background-color: #f9fafb;
+    background-color: var(--color-accent);
+    color: var(--color-accent-foreground);
 }
 
 .vfb-card {
-    border-radius: 0.75rem;
-    padding: 0.5rem;
+    border-radius: var(--radius-sm);
+    padding: calc(var(--spacing) * 2);
+    border: 1px solid var(--color-border);
     transition: all 0.2s;
-    border: 1px solid #f4f4f5;
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     text-align: left;
     cursor: pointer;
     display: block;
     width: 100%;
+    background-color: var(--color-card);
 }
 
 .vfb-card:hover {
-    background-color: #fafafa;
+    background-color: var(--color-accent);
 }
 
 
 .vfb-input {
     display: block;
     width: 100%;
-    padding: 0.5rem 0.75rem;
+    padding: var(--spacing) calc(var(--spacing) * 2);
     font-size: 1rem;
-    color: #3f3f46;
-    border: 1px solid #f4f4f5;
-    border-radius: 0.375rem;
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    color: var(--color-muted-foreground);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 .vfb-input:focus {
-    border-color: #e4e4e7;
-    box-shadow: 0 0 0 3px #e4e4e7;
+    border-color: var(--color-primary);
     outline: none;
 }

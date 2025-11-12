@@ -2,7 +2,7 @@
     <div class="space-y-6">
         <div class="flex items-center justify-between">
             <div>
-                <h1 class="text-xl font-semibold text-zinc-900">{{ labels.createFormTitle }}</h1>
+                <h1 class="text-xl font-semibold text-foreground">{{ labels.createFormTitle }}</h1>
             </div>
             <button
                 @click="$emit('close')"
@@ -23,7 +23,7 @@
                 <select
                     v-model="form.category"
                     class="vfb-input"
-                    :class="{ 'border-red-500! text-red-800': formErrors.category }"
+                    :class="{ 'border-destructive text-destructive': formErrors.category }"
                 >
                     <option :value="null" selected>{{ labels.categoryPlaceholder }}</option>
                     <option v-for="category in categories" :key="category.id" :value="category.slug">
@@ -40,7 +40,7 @@
                     v-model="form.title"
                     :placeholder="labels.title"
                     class="vfb-input"
-                    :class="{ 'ring-red-500! text-red-800': formErrors.title }"
+                    :class="{ 'ring-destructive text-destructive': formErrors.title }"
                 >
                 <div v-if="formErrors.title" class="text-sm text-red-500">
                     {{ formErrors.title[0] }}

@@ -3,7 +3,7 @@
         @click="$emit('vote')"
         :class="[
             'vfb-button',
-            { 'bg-blue-100! text-blue-600!': hasVoted }
+            { 'bg-accent text-accent-foreground': hasVoted }
         ]"
     >
         <span>{{ votesCount }} {{ labels.votes }}</span>

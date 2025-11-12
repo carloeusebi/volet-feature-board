@@ -2,7 +2,7 @@
     <div class="space-y-3" v-if="feature">
         <div class="flex items-start space-x-4 justify-between">
             <div>
-                <h1 class="text-xl font-semibold text-zinc-900">{{ feature.title }}</h1>
+                <h1 class="text-xl font-semibold text-foreground">{{ feature.title }}</h1>
             </div>
             <button
                 @click="$emit('close')"
@@ -15,9 +15,9 @@
             </button>
         </div>
         <div class="flex items-center space-x-4">
-            <div class="flex items-center bg-zinc-100 px-2 py-1 rounded-full">
+            <div class="flex items-center bg-secondary text-secondary-foreground px-2 py-1 rounded-full">
                 <img :src="feature.category.icon" :alt="feature.category" class="size-4">
-                <div class="text-sm text-gray-500 ml-2">
+                <div class="text-sm ml-2">
                     {{ feature.category.name }}
                 </div>
             </div>
@@ -32,10 +32,10 @@
                 />
             </div>
         </div>
-        <p class="text-gray-600 overflow-hidden">{{ feature.description }}</p>
+        <p class="text-muted-foreground overflow-hidden">{{ feature.description }}</p>
 
-        <div class="space-y-4 pt-4 border-t border-zinc-200">
-            <div class="text-gray-500 text-sm font-semibold">Comments</div>
+        <div class="space-y-4 pt-4 border-t border-border">
+            <div class="text-muted-foreground text-sm font-semibold">{{ labels.comments }}</div>
             <FeatureCommentForm
                 :labels="labels"
                 :feature-id="feature.id"
