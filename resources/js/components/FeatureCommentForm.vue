@@ -12,7 +12,7 @@
         >
             {{ labels.postComment }}
         </button>
-        <div v-if="success" class="text-green-600 text-sm mt-1 text-left">Comment posted!</div>
+        <div v-if="success" class="text-green-600 text-sm mt-1 text-left">{{ labels.commentPosted || 'Comment posted!' }}</div>
     </form>
 </template>
 
