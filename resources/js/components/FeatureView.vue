@@ -14,7 +14,7 @@
                 {{ labels.back }}
             </button>
         </div>
-        <div class="flex items-center space-x-4">
+        <div class="flex items-center space-x-2">
             <div class="flex items-center bg-secondary text-secondary-foreground px-2 py-1 rounded-full">
                 <img :src="feature.category.icon" :alt="feature.category" class="size-4">
                 <div class="text-sm ml-2">

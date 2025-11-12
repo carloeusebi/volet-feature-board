@@ -23,18 +23,19 @@
             class="vfb-card"
             @click="$emit('select-feature', feature)"
         >
-            <div class="flex items-center">
+            <div class="flex items-center space-x-2">
                 <div class="flex items-center bg-secondary text-secondary-foreground px-2 py-1 rounded-full">
                     <img :src="feature.category.icon" :alt="feature.category" class="size-4">
                     <div class="text-sm ml-2">
                         {{ feature.category.name }}
                     </div>
                 </div>
+                <FeatureStatus :status="feature.status" />
                 <div class="grow"></div>
                 <div
                     class="flex items-center px-2 py-1 rounded-full"
                     :class="[
-                        feature.has_voted ? 'bg-primary text-primary-foreground' : 'text-accent-foreground bg-accent'
+                        feature.has_voted ? 'bg-primary text-primary-foreground' : 'text-accent bg-accent-foreground'
                     ]"
                 >
                     <img :src="`https://api.iconify.design/lucide:thumbs-up.svg?color=%23${feature.has_voted ? 'FFF' : '2563eb'}`" alt="like"
@@ -57,9 +58,11 @@
 
 <script>
 import ApiService from '../services/ApiService'
+import FeatureStatus from "./FeatureStatus.vue";
 
 export default {
     name: "FeatureList",
+  components: {FeatureStatus},
 
     emits: ['update:display-mode', 'select-feature'],
 
