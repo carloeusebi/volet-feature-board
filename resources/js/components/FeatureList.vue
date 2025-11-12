@@ -34,7 +34,7 @@
                 <div
                     class="flex items-center px-2 py-1 rounded-full"
                     :class="[
-                        feature.has_voted ? 'bg-primary text-primary-foreground' : 'text-accent-foreground bg-foreground'
+                        feature.has_voted ? 'bg-primary text-primary-foreground' : 'text-accent-foreground bg-accent'
                     ]"
                 >
                     <img :src="`https://api.iconify.design/lucide:thumbs-up.svg?color=%23${feature.has_voted ? 'FFF' : '2563eb'}`" alt="like"

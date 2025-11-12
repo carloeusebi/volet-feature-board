@@ -1,9 +1,9 @@
 <template>
     <span :class="[
         'px-3 py-1 rounded-full flex items-center text-sm',
-        statusClasses[status] || statusClasses.pending
+        statusClasses[status.value] || statusClasses.pending
     ]">
-        {{ status }}
+        {{ status.label }}
     </span>
 </template>
 
