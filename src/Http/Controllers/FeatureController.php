@@ -20,7 +20,7 @@ class FeatureController extends Controller
     {
         $authorId = auth()->check() ? auth()->id() : $request->header('X-Guest-ID');
 
-        $features = Feature::with(['comments', 'votes'])
+        $features = Feature::with(['comments.author', 'votes.author'])
             ->withCount('votes')
             ->orderByDesc('votes_count')
             ->get();
