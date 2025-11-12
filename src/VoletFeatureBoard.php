@@ -63,6 +63,9 @@ class VoletFeatureBoard extends BaseFeature
             ],
             'labels' => trans('volet-feature-board::volet-feature-board'),
             'categories' => $this->getCategories(),
+            'meta' => [
+                'csrfToken' => csrf_token(),
+            ],
         ];
     }
 }

@@ -17,6 +17,7 @@
             :categories="categories"
             :routes="routes"
             :labels="labels"
+            :csrf-token="meta.csrfToken"
             @created="() => {
                 displayMode = 'feature-list'
             }"
@@ -29,6 +30,7 @@
             :feature="selectedFeature"
             :labels="labels"
             :routes="routes"
+            :csrf-token="meta.csrfToken"
             @close="() => displayMode = 'feature-list'"
             @update:display-mode="(mode) => displayMode = mode"
         />
@@ -57,6 +59,10 @@ export default {
             required: true,
         },
         labels: {
+            type: Object,
+            required: true,
+        },
+        meta: {
             type: Object,
             required: true,
         },

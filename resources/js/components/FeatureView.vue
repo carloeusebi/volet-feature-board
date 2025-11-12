@@ -40,6 +40,7 @@
                 :labels="labels"
                 :feature-id="feature.id"
                 :routes="routes"
+                :csrf-token="csrfToken"
                 @created="addComment"
             />
             <FeatureComments :comments="feature.comments" />
@@ -74,6 +75,10 @@ export default {
         labels: {
             type: Object,
             required: true
+        },
+        csrfToken: {
+            type: String,
+            required: true
         }
     },
     data() {
@@ -84,7 +89,7 @@ export default {
     methods: {
         async toggleVote() {
             try {
-                const data = await ApiService.post(this.routes.vote.replace('_feature_id_', this.feature.id));
+                const data = await ApiService.post(this.routes.vote.replace('_feature_id_', this.feature.id), {}, this.csrfToken);
                 this.feature.votes_count = data.votes_count;
                 this.feature.has_voted = data.action === 'added';
             } catch (error) {

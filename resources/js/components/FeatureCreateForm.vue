@@ -84,6 +84,10 @@ export default {
         labels: {
             type: Object,
             required: true
+        },
+        csrfToken: {
+            type: String,
+            required: true
         }
     },
     data() {
@@ -103,7 +107,7 @@ export default {
             this.isLoading = true
 
             try {
-                await ApiService.post(this.routes.store, this.form)
+                await ApiService.post(this.routes.store, this.form, this.csrfToken)
                 this.$emit('created')
                 this.$emit('close')
             } catch (error) {

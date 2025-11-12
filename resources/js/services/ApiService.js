@@ -1,10 +1,11 @@
 import GuestService from './GuestService';
 
 export default {
-    async request(url, options = {}) {
+    async request(url, options = {}, csrfToken = null) {
         const headers = {
             'Content-Type': 'application/json',
             'X-Guest-ID': GuestService.getGuestId(),
+            'X-CSRF-TOKEN': csrfToken,
             ...options.headers
         };
 
@@ -20,10 +21,14 @@ export default {
         return response.json();
     },
 
-    async post(url, data = {}) {
-        return this.request(url, {
+    async post(url, data = {}, csrfToken = null) {
+        return this.request(
+          url,
+          {
             method: 'POST',
             body: JSON.stringify(data)
-        });
+          },
+          csrfToken,
+          );
     }
 }

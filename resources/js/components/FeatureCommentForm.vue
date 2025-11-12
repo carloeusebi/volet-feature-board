@@ -33,6 +33,10 @@ export default {
         routes: {
             type: Object,
             required: true
+        },
+        csrfToken: {
+          type: String,
+          required: true
         }
     },
     data() {
@@ -47,7 +51,8 @@ export default {
             try {
                 const comment = await ApiService.post(
                     this.routes.comments.replace('_feature_id_', this.featureId),
-                    { content: this.content }
+                    { content: this.content },
+                    this.csrfToken
                 );
                 this.$emit('created', comment);
                 this.content = '';
