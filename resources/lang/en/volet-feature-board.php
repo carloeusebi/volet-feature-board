@@ -17,4 +17,13 @@ return [
     'addComment' => 'Add a comment',
     'postComment' => 'Submit',
     'commentInputPlaceholder' => 'Write a comment...',
+    'guest' => 'Guest',
+    'unknownUser' => 'Unknown User',
+
+    'feature-status' => [
+        'pending' => 'Pending',
+        'approved' => 'Approved',
+        'rejected' => 'Rejected',
+        'completed' => 'Completed',
+    ]
 ];

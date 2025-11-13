@@ -5,8 +5,10 @@ namespace Mydnic\VoletFeatureBoard\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Collection;
 use Mydnic\Volet\Features\FeatureManager;
 use Mydnic\VoletFeatureBoard\Enums\FeatureStatus;
+use Mydnic\VoletFeatureBoard\Models\Comment;
 use Mydnic\VoletFeatureBoard\Models\Feature;
 use Mydnic\VoletFeatureBoard\Models\Vote;
 
@@ -20,18 +22,45 @@ class FeatureController extends Controller
     {
         $authorId = auth()->check() ? auth()->id() : $request->header('X-Guest-ID');
 
-        $features = Feature::with(['comments.author', 'votes.author'])
+        /** @var Feature $model */
+        $model = config('volet-feature-board.models.feature');
+
+        $features = $model::with(['comments.author', 'votes.author'])
             ->withCount('votes')
             ->orderByDesc('votes_count')
             ->get();
 
         $featureBoard = $this->featureManager->getFeature('volet-feature-board');
-        $categories = collect($featureBoard->getCategories());
+        /** @var Collection<int, array<string, string>>  $categories */
+        $categories = collect($featureBoard?->getCategories());
 
-        $features->map(function ($feature) use ($categories, $authorId) {
-            $feature->category = $categories->where('slug', $feature->category)->first();
-            $feature->has_voted = $feature->votes->where('author_id', $authorId)->isNotEmpty();
-            $feature->authorid = $authorId;
+        $features = $features->map(function (Feature $feature) use ($categories, $authorId): array {
+            $category = $categories->where('slug', $feature->category)->first();
+            $has_voted = $feature->votes->where('author_id', $authorId)->isNotEmpty();
+
+            return [
+                'id' => $feature->id,
+                'title' => $feature->title,
+                'description' => $feature->description,
+                'status' => [
+                    'value' => $feature->status->value,
+                    'label' => trans('volet-feature-board::volet-feature-board.feature-status.'.$feature->status->value),
+                ],
+                'created_at' => $feature->created_at,
+                'updated_at' => $feature->updated_at,
+                'votes_count' => $feature->votes_count,
+                'author_name' => $feature->author_name,
+                'category' => $category,
+                'has_voted' => $has_voted,
+
+                'comments' => $feature->comments->map(fn (Comment $comment): array => [
+                    'id' => $comment->id,
+                    'content' => $comment->content,
+                    'created_at' => $comment->created_at,
+                    'updated_at' => $comment->updated_at,
+                    'author_name' => $comment->author_name,
+                ]),
+            ];
         });
 
         return response()->json($features);
@@ -39,7 +68,6 @@ class FeatureController extends Controller
 
     public function store(Request $request): JsonResponse
     {
-        /** @var FeatureBoard $featureBoard */
         $featureBoard = $this->featureManager->getFeature('volet-feature-board');
 
         $categories = collect($featureBoard->getCategories())

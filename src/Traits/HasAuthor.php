@@ -51,10 +51,10 @@ trait HasAuthor
         if (! str_starts_with($this->author_id, 'guest_')) {
             $user = $this->author;
 
-            return $user ? $user->name : 'Unknown User';
+            return $user ? $user->name : trans('volet-feature-board::volet-feature-board.unknownUser');
         }
 
         // If it's a guest
-        return 'Guest';
+        return trans('volet-feature-board::volet-feature-board.guest');
     }
 }

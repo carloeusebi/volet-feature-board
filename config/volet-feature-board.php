@@ -7,6 +7,8 @@ return [
         'comments' => 'volet_feature_comments',
     ],
 
+    'user_model' => 'App\Models\User',
+
     // The controller class to use for feedback endpoints
     'controllers' => [
         'features' => \Mydnic\VoletFeatureBoard\Http\Controllers\FeatureController::class,

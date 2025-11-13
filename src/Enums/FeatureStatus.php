@@ -9,7 +9,7 @@ enum FeatureStatus: string
     case REJECTED = 'rejected';
     case COMPLETED = 'completed';
 
-    public function label(): string
+    public function getLabel(): string
     {
         return match ($this) {
             self::PENDING => 'Pending',

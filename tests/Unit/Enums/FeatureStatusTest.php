@@ -10,8 +10,8 @@ test('feature status enum has correct cases', function () {
 });
 
 test('feature status enum returns correct labels', function () {
-    expect(FeatureStatus::PENDING->label())->toBe('Pending');
-    expect(FeatureStatus::APPROVED->label())->toBe('Approved');
-    expect(FeatureStatus::REJECTED->label())->toBe('Rejected');
-    expect(FeatureStatus::COMPLETED->label())->toBe('Completed');
+    expect(FeatureStatus::PENDING->getLabel())->toBe('Pending');
+    expect(FeatureStatus::APPROVED->getLabel())->toBe('Approved');
+    expect(FeatureStatus::REJECTED->getLabel())->toBe('Rejected');
+    expect(FeatureStatus::COMPLETED->getLabel())->toBe('Completed');
 });

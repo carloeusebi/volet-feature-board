@@ -4,6 +4,7 @@ namespace Mydnic\VoletFeatureBoard\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Schema;
 use Mydnic\VoletFeatureBoard\VoletFeatureBoardServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
@@ -14,6 +15,14 @@ class TestCase extends Orchestra
     protected function setUp(): void
     {
         parent::setUp();
+
+        Schema::create('users', function ($table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->timestamps();
+        });
 
         Factory::guessFactoryNamesUsing(
             fn (string $modelName) => 'Mydnic\\VoletFeatureBoard\\Database\\Factories\\'.class_basename($modelName).'Factory'
