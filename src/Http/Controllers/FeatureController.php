@@ -25,7 +25,7 @@ class FeatureController extends Controller
         /** @var Feature $model */
         $model = config('volet-feature-board.models.feature');
 
-        $features = $model::with(['comments.author', 'votes.author'])
+        $features = $model::with(['comments.author', 'votes.author', 'author'])
             ->withCount('votes')
             ->orderByDesc('votes_count')
             ->get();
